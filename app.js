@@ -332,7 +332,7 @@ function runEvent(e)
 */
 
 //-----------------Form Events
-
+/*
 const form = document.querySelector('form');
 const taskInput = document.getElementById('task');
 const heading = document.querySelector('h5');
@@ -366,4 +366,4 @@ function runEvent(e)
 
   // e.preventDefault();
 }
-
+*/
