@@ -367,3 +367,69 @@ function runEvent(e)
   // e.preventDefault();
 }
 */
+//*************************************************//
+
+//------------Event Bubbling-----------------//
+/*
+//When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up on other ancestors.
+
+//A bubbling event goes from the target element straight up. Normally it goes upwards till <html>, and then to document object, and some events even reach window, calling all handlers on the path.
+
+// But any handler may decide that the event has been fully processed and stop the bubbling.
+
+// The method for it is event.stopPropagation().
+
+document.querySelector('.card-title').addEventListener('click',function(){
+  console.log('card title');
+});
+
+document.querySelector('.card-content').addEventListener('click',function(){
+  console.log('card content');
+});
+
+document.querySelector('.card').addEventListener('click',function(){
+  console.log('card');
+});
+
+document.querySelector('.col').addEventListener('click',function(){
+  console.log('col');
+});
+
+*/
+
+//---------------Event Delegation------------------//
+/*
+//The idea is that if we have a lot of elements handled in a similar way, then instead of assigning a handler to each of them – we put a single handler on their common ancestor.
+
+document.body.addEventListener('click',deleteItem);
+function deleteItem(e)
+{
+  if(e.target.className === 'fa fa-remove')
+  {
+    console.log('Item-deleted');
+  }
+};
+
+*/
+
+// Set Local Storage Item
+
+/*
+//In local storage the data remains until we manually clear it out but in session storage the data is cleared automatically as the session ends or as we close the browser.
+
+//Set local Storage item
+localStorage.setItem('name','John');
+
+//Set session Storage item
+sessionStorage.setItem('name','Doe');
+
+//Remove from Local storage
+localStorage.removeItem('name');
+
+//Get From Storage
+const name = localStorage.getItem('name');
+
+//Clear Local Storage
+localStorage.clear();
+
+*/
