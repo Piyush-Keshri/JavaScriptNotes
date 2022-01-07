@@ -236,7 +236,7 @@ const cardAction = document.querySelector('.card-action');
 //Replace
 cardAction.replaceChild(newHeading,oldHeading);
 
-//--------Remove Elements
+//--------Remove Elements 
 
 const lis = document.querySelectorAll('li');
 const list = document.querySelector('ul');
