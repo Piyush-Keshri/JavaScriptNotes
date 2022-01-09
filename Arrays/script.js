@@ -72,3 +72,27 @@ movements.forEach(function(movement,index){
         console.log(`Movement ${index+1} : You Withdrew ${Math.abs(movement)}`);
     }
 });
+
+//MAP method
+//map returns a new array containing the results of an operation on all original array elements. 
+const numbers = [65, 44, 12, 4];
+const newArr = numbers.map(myFunction)
+
+function myFunction(num) {
+  return num * 10;
+}
+console.log(newArr);
+
+//filter Method
+//filter returns a new array containing the array elements that passed the specified test condition.
+const ages = [32,33,16,39,5,7,46,91,88,3,24,40];
+const result = ages.filter(checkAdult);
+
+function checkAdult(age) {
+  return age >= 18;
+}
+console.log(result);
+
+//reduce Method
+//reduce boils("reduces") all array elements down to one single value. (eg:-adding all elements together).
+//The reduce() method does not change the original array.
