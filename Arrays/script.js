@@ -30,7 +30,7 @@ console.log(letters.join('-'));
 
 //---------------------LOOPING THROUGH ARRAYS-----------------------------//
 
-const movements = [200,-450,-400,3000,-650,-130,70,1300];
+const movements = [200,450,-400,3000,-650,-130,70,1300];
 
 //The for-of loop.
 for(const movement of movements){
@@ -96,3 +96,56 @@ console.log(result);
 //reduce Method
 //reduce boils("reduces") all array elements down to one single value. (eg:-adding all elements together).
 //The reduce() method does not change the original array.
+
+console.log(movements)
+
+//accumulator is like a container which holds the cummulative values.It is the first parameter in the call back function of reduce()method.
+
+const balance = movements.reduce(function(acc,curr,i,arr){
+    console.log(`Iteration No. : ${i} - acc :${acc}`)
+    return acc+curr;
+
+},0);
+console.log(balance);
+//Here 0 is the starting point of the accumulator.We can give any number.
+
+//Maximum Value
+const max = movements.reduce((acc,mov) => {
+    if(acc > mov)
+    return acc;
+    else 
+    return mov;
+},movements[0]);
+ console.log(max);
+
+ ///////////////////////------ CHALLENGE -----//////////////////////////////
+/**
+ * Calculae the dog age in human years using the following formula : if the dog is<= 2 years old,
+ * humanAge = 2*dogAge.If the dog is > 2 years old, humanAge = 16 + dogAge*4.
+ 
+ *Exclude all dogs that are less than 18 human years old(which is the same as keeping dogs that are at least 18 years old.)
+ *Calculate the average human age of all adult dogs.
+ *Run the function for both datasets.   
+ */
+
+ const data1 = [5,2,4,1,15,8,3];
+ const data2 = [16,6,10,5,6,1,4];
+
+ const calcAverageHumanAge = function(ages){
+     const humanAges = ages.map(age => age <= 2? 2*age : 16+age*4);
+    //  console.log(humanAges);
+
+    const adults = humanAges.filter(age => age>= 18);
+    // console.log(adults);
+
+    const average = adults.reduce((acc,age) => acc+age,0) / adults.length;
+    // return average;
+    console.log(average);
+ };
+ calcAverageHumanAge(data1);
+
+//-------------------------THE FIND METHOD-----------------------------------//
+// The find() method returns the value of the first element in the provided array that satisfies the provided testing function. If no values satisfy the testing function, undefined is returned.
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(movements);
+console.log(firstWithdrawal);
