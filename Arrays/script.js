@@ -149,3 +149,24 @@ const max = movements.reduce((acc,mov) => {
 const firstWithdrawal = movements.find(mov => mov < 0);
 console.log(movements);
 console.log(firstWithdrawal);
+
+//Some Method()
+// The some() method tests whether at least one element in the array passes the test implemented by the provided function.
+// It returns true if, in the array, it finds an element for which the provided function returns true; otherwise it returns false.
+// It doesn't modify the array.
+
+const anyDeposits = movements.some(mov => mov >1500);
+console.log(anyDeposits);
+
+//Every Method()
+// The every() method tests whether all elements in the array pass the test implemented by the provided function.
+//  It returns a Boolean value.
+
+
+//FLAT METHOD
+
+const arr1 = [[1,2,3,],[4,5,6],[7,8,9,],7,2,5,4];
+console.log(arr1.flat());
+
+const arrdeep = [[1,2,[3],99],[4,[5,6]],[[7,8],9,],7,2,5,4];
+console.log(arrdeep.flat(2))
