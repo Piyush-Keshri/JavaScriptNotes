@@ -153,3 +153,53 @@ const calcDaysPassed = (date1,date2) => Math.abs(date1 - date2) /(1000*60*60*24)
 
 const days1 = calcDaysPassed(new Date(2037,3,14),new Date(2039,6,2));
 console.log(days1);
+
+//NUmbers
+
+const num = 3884761.14749;
+
+const options = {
+  style : 'currency',
+  unit : 'celsius',
+  currency : 'EUR',
+  // useGrouping : false, 
+};
+
+console.log('US : ',new Intl.NumberFormat('en-US',options).format(num));
+console.log('Germany : ',new Intl.NumberFormat('de-DE',options).format(num));
+console.log('Syria : ',new Intl.NumberFormat('ar-SY',options).format(num));
+
+
+//TIMERS
+
+//SetTimeOut Method().
+//The setTimeout() method calls a function after a number of milliseconds.
+
+const ingredients = ['olives','chilli'];
+
+const pizzaTimer = setTimeout(
+  (ing1,ing2) => console.log(`Here is your pizza with  ${ing1} and ${ing2} 🍕`),
+                    3000,
+                    ...ingredients);
+
+console.log('Waiting...');
+
+if(ingredients.includes('spinach')) 
+{
+  clearTimeout(pizzaTimer);
+}
+
+
+//SetInterval() Method
+ 
+// The setInterval() method calls a function at specified intervals (in milliseconds).
+// The setInterval() method continues calling the function until clearInterval() is called, or the window is closed
+
+setInterval(function(){
+
+  const now = new Date();
+  console.log(now);
+},60000);
+
+
+
