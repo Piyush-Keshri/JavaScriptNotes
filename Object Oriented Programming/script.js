@@ -61,18 +61,18 @@ const Person = function(firstName,birthYear){
     this.firstName = firstName;
     this.birthYear = birthYear;
     
-    //NEVER create METHODS INSIDE A CONSTRUCTOR FUNCTIONS.
-    this.calcAge = function(){
+    // NEVER create METHODS INSIDE A CONSTRUCTOR FUNCTIONS.
+    // this.calcAge = function(){
 
-        console.log(2037 - this.birthYear);
-    }
+    //     console.log(2037 - this.birthYear);
+    // }
 }
 
 const jonas = new Person('Jonas',1991);
 console.log(jonas);
 
 //Steps
-//1. New {} is created.
+//1. New {}(empty Object) is created.
 //2. function is called, this = {}
 //3. {} linked to prototype.
 //4. function automatically return {}
@@ -86,3 +86,35 @@ console.log(lisa,jack,bob);
 
 //All these Objects are instances of Person.
 console.log(jonas instanceof Person);
+
+//------------------PROTOTYPES.
+//The JavaScript prototype property allows you to add new properties to object constructors.
+
+console.log(Person.prototype);
+
+Person.prototype.calcAge = function(){
+  
+  console.log(2037 - this.birthYear);
+
+}
+jonas.calcAge();
+lisa.calcAge();
+
+console.log(jonas.__proto__);
+
+Person.prototype.species = 'Homo-Sapiens';
+
+console.log(jonas.species,lisa.species);
+console.log(jonas.hasOwnProperty('firstName'));
+console.log(jonas.hasOwnProperty('species'));
+
+const arr = [3,6,6,4,6,7,7,2,1,0,7,2];
+
+console.log(arr.__proto__);
+
+Array.prototype.unique = function(){
+
+  return [...new Set(this)];
+
+}
+console.log(arr.unique())
