@@ -89,7 +89,7 @@ console.log(jonas instanceof Person);
 
 //------------------PROTOTYPES.
 
-//The JavaScript prototype property allows you to add new properties to object constructors.
+// The JavaScript prototype property allows you to add new properties to object constructors.
 
 console.log(Person.prototype);
 
@@ -209,3 +209,105 @@ account.latest = 50;
 console.log(account.latest);
 
 
+//-------------------------------STATIC METHODS---------------------------------//
+
+//1.The static keyword defines a static method or property for a class, or a class static initialization block.
+
+//2.Neither static methods nor static properties can be called on instances of the class. Instead, they're called on the class itself.
+
+//3.Static methods are often utility functions, such as functions to create or clone objects, whereas static properties are useful for caches, fixed-configuration,
+// or any other data you don't need to be replicated across instances.
+
+const PersonSt = function(firstName,birthYear){
+ 
+  //Instance Properties
+
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+}
+
+const john = new PersonSt('John',1981);
+console.log(john);
+
+// static method
+PersonSt.hey = function(){
+  console.log('Hey There 👋')
+} ;
+
+PersonSt.hey();
+// We cannot call the hey method on the instance of PersonSt class.
+// john.hey()
+
+//-----------------------Object.create()---------------------------------//
+
+// The Object.create() method creates a new object, using an existing object as the prototype of the newly created object.
+
+// We can set the prototypes of Objects to any object that we want.
+
+const PersonProto = {
+
+calcAge(){
+  console.log(2037 - this.birthYear);
+}
+
+}
+const steven = Object.create(PersonProto);
+steven.name = 'Steven';
+steven.birthYear = 1985;
+
+steven.calcAge();
+
+//----------------------------CODING CHALLENGE 2---------------------------------//
+
+/*
+1. Re-create challenge 1 ,but this time using ES6 classes;
+2. Add a getter called 'speedUs' which return the current speed in mi/h (divide by 1.6);
+3. Add a setter called 'speedUs' which sets the current speed in mi/h ;
+4. Creare a new car and experiment with the getter and setter .
+
+DATA CAR 1 : 'Ford' going at 120 km/h .
+
+*/
+
+class Car1{
+
+constructor(make,speed){
+  this.make = make;
+  this.speed = speed;
+}
+accelerate = function(){
+
+  this.speed +=10;
+  console.log(this.speed);
+}
+
+ brake = function(){
+
+  this.speed -=5;
+  console.log(this.speed);
+}
+
+get speedUs(){
+
+console.log(this.speed / 1.6);
+}
+
+set speedUs(val){
+
+  this.speed = val*1.6 ;
+}
+
+}
+
+const newCar = new Car1('BMW',120);
+
+newCar.accelerate();
+newCar.brake();
+newCar.speedUs;
+newCar.speedUs = 45;
+newCar.accelerate();
+newCar.accelerate();
+
+console.log(newCar.speed);
+console.log(newCar.make);
+newCar.speedUs;
