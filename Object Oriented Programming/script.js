@@ -175,9 +175,39 @@ class PersonCl {
     this.birthYear = birthYear;
   }
 
+//Instance Methods
+
   calcAge(){
     console.log(2037 - this.birthYear);
   }
+
+  greet(){
+    console.log(`Hey ${this.fullName}`);
+  }
+
+  get age(){
+    return 2037 - this.birthYear;
+  }
+
+  set fullName(name){
+    
+    if(name.includes(' '))
+    this._fullName = name;
+
+    else
+    alert(`${name} is not a full name!`);
+  
+  }
+
+  get fullName(){
+    return this._fullName;
+  }
+
+// Static method
+static hey() {
+
+  console.log('Hey there 👋') ;
+}
 
 }
 
@@ -311,3 +341,106 @@ newCar.accelerate();
 console.log(newCar.speed);
 console.log(newCar.make);
 newCar.speedUs;
+
+//-------------INHERITANCE BETWEEN CLASSES : CONSTRUCTOR FUNCTIONS----------------------//
+
+const PersonI = function(firstName,birthYear){
+
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+
+};
+
+PersonI.prototype.calcAge = function(){
+
+  console.log(2037-this.birthYear);
+};
+
+const Student = function(firstName,birthYear,course){
+  
+  PersonI.call(this,firstName,birthYear);   // Student constructor function inherits the PersonI constructor function.
+  this.course = course;
+
+};
+
+Student.prototype = Object.create(Person.prototype); // Linking ProtoTypes
+
+Student.prototype.introduce = function(){
+
+  console.log(`My Name is ${this.firstName} and I study ${this.course}`);
+
+}
+
+const mike = new Student('Mike',2020,'CSE');
+
+mike.introduce();
+mike.calcAge(); //calcAge is a method of PersonI constructor function and mike is an object of Student constructor function.
+
+
+//-----------------------------Coding Challenge #3----------------------------------------//
+
+/* 
+1. Use a constructor function to implement an Electric Car (called EV) as a CHILD "class" of Car. 
+  Besides a make and current speed, the EV also has the current battery charge in % ('charge' property);
+2. Implement a 'chargeBattery' method which takes an argument 'chargeTo' and sets the battery charge to 'chargeTo';
+3. Implement an 'accelerate' method that will increase the car's speed by 20, and decrease the charge by 1%. Then log a message like this: 'Tesla going at 140 km/h, with a charge of 22%';
+4. Create an electric car object and experiment with calling 'accelerate', 'brake' and 'chargeBattery' (charge to 90%).
+   Notice what happens when you 'accelerate'! HINT: Review the definiton of polymorphism 😉
+DATA CAR 1: 'Tesla' going at 120 km/h, with a charge of 23%
+GOOD LUCK 😀
+*/
+
+const ElectricCar = function(make,speed,charge){
+
+  Car.call(this,make,speed);
+  this.charge = charge;
+
+}
+ElectricCar.prototype = Object.create(Car.prototype);
+
+ElectricCar.prototype.chargeBattery = function(chargeTo){
+
+  this.charge = chargeTo;
+  console.log(this.charge);
+}
+ElectricCar.prototype.accelerate = function(){
+
+  this.speed +=20;
+  this.charge -= 1;
+  console.log(`${this.make} is going at ${this.speed} Km/Hr,with a charge of ${this.charge}%`);
+
+}
+
+const carI = new ElectricCar('Tesla',120,50);
+
+carI.chargeBattery(70);
+carI.accelerate();
+carI.accelerate();
+carI.brake();
+
+//-----------------INHERITANCE BETWEEN CLASSES------------------------//
+
+class StudentCl extends PersonCl{
+
+  constructor(fullName,birthYear,course){
+    //Always needs to happen first!
+    super(fullName,birthYear);
+
+    this.course = course; //not mandatory
+
+  }
+
+  introduce(){
+    console.log(`My name is ${this.firstName} and I study ${this.course}`);
+  }
+
+}
+
+const martha = new StudentCl(
+  'Martha Jones',
+  2012,
+  'Computer Science'
+);
+
+martha.introduce();
+martha.calcAge();
