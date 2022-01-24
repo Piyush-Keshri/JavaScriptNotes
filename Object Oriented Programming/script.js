@@ -54,21 +54,21 @@
 //Variables of constructor function starts with a capital letter.
 
 
-const Person = function(firstName,birthYear){
- 
-    //Instance Properties
+const Person = function (firstName, birthYear) {
 
-    this.firstName = firstName;
-    this.birthYear = birthYear;
-    
-    // NEVER create METHODS INSIDE A CONSTRUCTOR FUNCTIONS.
-    // this.calcAge = function(){
+  //Instance Properties
 
-    //     console.log(2037 - this.birthYear);
-    // }
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+
+  // NEVER create METHODS INSIDE A CONSTRUCTOR FUNCTIONS.
+  // this.calcAge = function(){
+
+  //     console.log(2037 - this.birthYear);
+  // }
 }
 
-const jonas = new Person('Jonas',1991);
+const jonas = new Person('Jonas', 1991);
 console.log(jonas);
 
 //Steps
@@ -79,10 +79,10 @@ console.log(jonas);
 
 //Now we can create as many objects with the constructor function.
 
-const lisa = new Person('lisa',2001);
-const jack = new Person('jack',1993);
-const bob = new Person('Bob',1998);
-console.log(lisa,jack,bob);
+const lisa = new Person('lisa', 2001);
+const jack = new Person('jack', 1993);
+const bob = new Person('Bob', 1998);
+console.log(lisa, jack, bob);
 
 //All these Objects are instances of Person.
 console.log(jonas instanceof Person);
@@ -93,8 +93,8 @@ console.log(jonas instanceof Person);
 
 console.log(Person.prototype);
 
-Person.prototype.calcAge = function(){
-  
+Person.prototype.calcAge = function () {
+
   console.log(2037 - this.birthYear);
 
 }
@@ -105,15 +105,15 @@ console.log(jonas.__proto__);
 
 Person.prototype.species = 'Homo-Sapiens';
 
-console.log(jonas.species,lisa.species);
+console.log(jonas.species, lisa.species);
 console.log(jonas.hasOwnProperty('firstName'));
 console.log(jonas.hasOwnProperty('species'));
 
-const arr = [3,6,6,4,6,7,7,2,1,0,7,2];
+const arr = [3, 6, 6, 4, 6, 7, 7, 2, 1, 0, 7, 2];
 
 console.log(arr.__proto__);
 
-Array.prototype.unique = function(){
+Array.prototype.unique = function () {
 
   return [...new Set(this)];
 
@@ -131,26 +131,26 @@ DATA CAR 2: 'Mercedes' going at 95 km/h
 GOOD LUCK 😀
 */
 
-const Car = function(make,speed){
+const Car = function (make, speed) {
 
   this.make = make;
   this.speed = speed;
 }
 
-Car.prototype.accelerate = function(){
+Car.prototype.accelerate = function () {
 
-  this.speed +=10;
+  this.speed += 10;
   console.log(this.speed);
 }
 
-Car.prototype.brake = function(){
+Car.prototype.brake = function () {
 
-  this.speed -=5;
+  this.speed -= 5;
   console.log(this.speed);
 }
 
-const bmw = new Car('BMW',120);
-const mercedes = new Car('Mercedes',95);
+const bmw = new Car('BMW', 120);
+const mercedes = new Car('Mercedes', 95);
 
 bmw.accelerate();
 mercedes.brake();
@@ -170,48 +170,48 @@ mercedes.brake();
 
 class PersonCl {
 
-  constructor(firstName,birthYear){
+  constructor(firstName, birthYear) {
     this.firstName = firstName;
     this.birthYear = birthYear;
   }
 
-//Instance Methods
+  //Instance Methods
 
-  calcAge(){
+  calcAge() {
     console.log(2037 - this.birthYear);
   }
 
-  greet(){
+  greet() {
     console.log(`Hey ${this.fullName}`);
   }
 
-  get age(){
+  get age() {
     return 2037 - this.birthYear;
   }
 
-  set fullName(name){
-    
-    if(name.includes(' '))
-    this._fullName = name;
+  set fullName(name) {
+
+    if (name.includes(' '))
+      this._fullName = name;
 
     else
-    alert(`${name} is not a full name!`);
-  
+      alert(`${name} is not a full name!`);
+
   }
 
-  get fullName(){
+  get fullName() {
     return this._fullName;
   }
 
-// Static method
-static hey() {
+  // Static method
+  static hey() {
 
-  console.log('Hey there 👋') ;
+    console.log('Hey there 👋');
+  }
+
 }
 
-}
-
-const jessica = new PersonCl('Jessica',1996);
+const jessica = new PersonCl('Jessica', 1996);
 console.log(jessica);
 jessica.calcAge();
 console.log(jessica.__proto__ === PersonCl.prototype);
@@ -221,14 +221,14 @@ console.log(jessica.__proto__ === PersonCl.prototype);
 const account = {
 
   owner: 'Jonas',
-  movements: [200,530,120,300],
+  movements: [200, 530, 120, 300],
 
-  get latest(){
+  get latest() {
 
     return this.movements.slice(-1).pop();
   },
 
-  set latest(mov){
+  set latest(mov) {
     this.movements.push(mov);
   }
 };
@@ -248,21 +248,21 @@ console.log(account.latest);
 //3.Static methods are often utility functions, such as functions to create or clone objects, whereas static properties are useful for caches, fixed-configuration,
 // or any other data you don't need to be replicated across instances.
 
-const PersonSt = function(firstName,birthYear){
- 
+const PersonSt = function (firstName, birthYear) {
+
   //Instance Properties
 
   this.firstName = firstName;
   this.birthYear = birthYear;
 }
 
-const john = new PersonSt('John',1981);
+const john = new PersonSt('John', 1981);
 console.log(john);
 
 // static method
-PersonSt.hey = function(){
+PersonSt.hey = function () {
   console.log('Hey There 👋')
-} ;
+};
 
 PersonSt.hey();
 // We cannot call the hey method on the instance of PersonSt class.
@@ -276,9 +276,9 @@ PersonSt.hey();
 
 const PersonProto = {
 
-calcAge(){
-  console.log(2037 - this.birthYear);
-}
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  }
 
 }
 const steven = Object.create(PersonProto);
@@ -299,37 +299,37 @@ DATA CAR 1 : 'Ford' going at 120 km/h .
 
 */
 
-class Car1{
+class Car1 {
 
-constructor(make,speed){
-  this.make = make;
-  this.speed = speed;
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+  accelerate = function () {
+
+    this.speed += 10;
+    console.log(this.speed);
+  }
+
+  brake = function () {
+
+    this.speed -= 5;
+    console.log(this.speed);
+  }
+
+  get speedUs() {
+
+    console.log(this.speed / 1.6);
+  }
+
+  set speedUs(val) {
+
+    this.speed = val * 1.6;
+  }
+
 }
-accelerate = function(){
 
-  this.speed +=10;
-  console.log(this.speed);
-}
-
- brake = function(){
-
-  this.speed -=5;
-  console.log(this.speed);
-}
-
-get speedUs(){
-
-console.log(this.speed / 1.6);
-}
-
-set speedUs(val){
-
-  this.speed = val*1.6 ;
-}
-
-}
-
-const newCar = new Car1('BMW',120);
+const newCar = new Car1('BMW', 120);
 
 newCar.accelerate();
 newCar.brake();
@@ -344,34 +344,34 @@ newCar.speedUs;
 
 //-------------INHERITANCE BETWEEN CLASSES : CONSTRUCTOR FUNCTIONS----------------------//
 
-const PersonI = function(firstName,birthYear){
+const PersonI = function (firstName, birthYear) {
 
   this.firstName = firstName;
   this.birthYear = birthYear;
 
 };
 
-PersonI.prototype.calcAge = function(){
+PersonI.prototype.calcAge = function () {
 
-  console.log(2037-this.birthYear);
+  console.log(2037 - this.birthYear);
 };
 
-const Student = function(firstName,birthYear,course){
-  
-  PersonI.call(this,firstName,birthYear);   // Student constructor function inherits the PersonI constructor function.
+const Student = function (firstName, birthYear, course) {
+
+  PersonI.call(this, firstName, birthYear);   // Student constructor function inherits the PersonI constructor function.
   this.course = course;
 
 };
 
 Student.prototype = Object.create(Person.prototype); // Linking ProtoTypes
 
-Student.prototype.introduce = function(){
+Student.prototype.introduce = function () {
 
   console.log(`My Name is ${this.firstName} and I study ${this.course}`);
 
 }
 
-const mike = new Student('Mike',2020,'CSE');
+const mike = new Student('Mike', 2020, 'CSE');
 
 mike.introduce();
 mike.calcAge(); //calcAge is a method of PersonI constructor function and mike is an object of Student constructor function.
@@ -390,28 +390,28 @@ DATA CAR 1: 'Tesla' going at 120 km/h, with a charge of 23%
 GOOD LUCK 😀
 */
 
-const ElectricCar = function(make,speed,charge){
+const ElectricCar = function (make, speed, charge) {
 
-  Car.call(this,make,speed);
+  Car.call(this, make, speed);
   this.charge = charge;
 
 }
 ElectricCar.prototype = Object.create(Car.prototype);
 
-ElectricCar.prototype.chargeBattery = function(chargeTo){
+ElectricCar.prototype.chargeBattery = function (chargeTo) {
 
   this.charge = chargeTo;
   console.log(this.charge);
 }
-ElectricCar.prototype.accelerate = function(){
+ElectricCar.prototype.accelerate = function () {
 
-  this.speed +=20;
+  this.speed += 20;
   this.charge -= 1;
   console.log(`${this.make} is going at ${this.speed} Km/Hr,with a charge of ${this.charge}%`);
 
 }
 
-const carI = new ElectricCar('Tesla',120,50);
+const carI = new ElectricCar('Tesla', 120, 50);
 
 carI.chargeBattery(70);
 carI.accelerate();
@@ -420,17 +420,17 @@ carI.brake();
 
 //-----------------INHERITANCE BETWEEN CLASSES------------------------//
 
-class StudentCl extends PersonCl{
+class StudentCl extends PersonCl {
 
-  constructor(fullName,birthYear,course){
+  constructor(fullName, birthYear, course) {
     //Always needs to happen first!
-    super(fullName,birthYear);
+    super(fullName, birthYear);
 
     this.course = course; //not mandatory
 
   }
 
-  introduce(){
+  introduce() {
     console.log(`My name is ${this.firstName} and I study ${this.course}`);
   }
 
@@ -444,3 +444,83 @@ const martha = new StudentCl(
 
 martha.introduce();
 martha.calcAge();
+
+//  ------------------------More About Classes-------------------------------//
+
+class Account {
+  //Pubic Fields
+  locale = navigator.language;
+  
+  //Private Fields
+  #movements = [];
+  #pin;
+  constructor(owner, currency, pin) {
+
+    this.owner = owner;
+    this.currency = currency;
+  
+    //Protected Property :- The underscore signifies that these properties are protected and should not be used outside class,but they are accessible.
+    this.#pin = pin;
+    //this._movements = [];
+    //this.locale = navigator.language;
+
+    console.log(`Thanks for Opening An Account- ${owner} `)
+  }
+
+  //Public Interface 
+
+  getMovements(){
+    return this.#movements;
+  }
+
+  deposit(val) {
+    this.#movements.push(val);
+  }
+  withdrawal(val) {
+    this.deposit(-val);
+  }
+  
+  requestLoan(val) {
+
+    if (this.#approveLoan(val)) {
+      this.deposit(val);
+      console.log(`Loan Approved`);
+    }
+
+  }
+
+  //Private Methods
+  #approveLoan(val) {
+    return true;
+  }
+
+}
+
+const acc1 = new Account('Jonas', 'Euro', 1111);
+console.log(acc1);
+
+acc1.deposit(250);
+acc1.withdrawal(150);
+acc1.requestLoan(1000);
+console.log(acc1._pin);        //Should Not be accessed directly by anyone.
+
+
+//---------------ENCAPSULATION: PROTECTED PROPERTIES AND METHODS----------------------//
+
+//-----------------Public Fields
+// Public Fields are present on all the instances that we are creating through the class.
+// They can be accessed by anyone outside the class.
+// They are not on the prototype.
+// They are also referencable via the 'this' keyword.
+
+//---------------Private Fields(begins with #)
+//Private Feilds are present on all the instances that we are creating through the class.
+//Private feilds cannot be accessed by anyone outside the class.
+//They are not on the prototype.
+// They are also referencable via the 'this' keyword.
+
+//----------------Public methods
+//Methods inside the class which can also be used outside the class.
+
+//Private methods(begins with #)
+//Methods inside the class which cannot be accessed outside the class.
