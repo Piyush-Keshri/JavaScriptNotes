@@ -5,7 +5,7 @@ const renderCountry = function (data, className = '') {
 
     console.log(data);
     const html =
-      `<article class="country ${className}">
+        `<article class="country ${className}">
       <img class="country__img" src="${data.flag}" />
           <div class="country__data">
               <h3 class="country__name">${data.name}</h3>
@@ -18,7 +18,7 @@ const renderCountry = function (data, className = '') {
   </article>`;
     countriesContainer.insertAdjacentHTML('beforeend', html);
     countriesContainer.style.opacity = 1;
-  }
+}
 
 //---------------------| Consuming Promises With AsyncAwait |---------------------------//
 
@@ -28,40 +28,41 @@ const renderCountry = function (data, className = '') {
 
 const getPosition = function () {
 
-    return new Promise(function(resolve,reject){
-        navigator.geolocation.getCurrentPosition(resolve,reject);
-    })
+    return new Promise(function (resolve, reject) {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
 
-}
+};
 
-const whereAmI = async function(){
-try{
-// GeoLocation
-const pos = await getPosition();
-const{latitude:lat,longitude:lng} = pos.coords;
+const whereAmI = async function () {
+    try {
+        // GeoLocation
+        const pos = await getPosition();
+        const { latitude: lat, longitude: lng } = pos.coords;
 
-// Reverse Geocoding
-const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+        // Reverse Geocoding
+        const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?json=1`);
+        // https://geocode.xyz/${lat},${lng}?json=1
+        if (!resGeo.ok)
+            throw new Error('Problem getting location Data');
 
-if(!resGeo.ok)
-throw new Error('Problem getting location Data');
+        const dataGeo = resGeo.json();
+        console.log(dataGeo);
 
-const dataGeo = resGeo.json;
-console.log(dataGeo);
+        //Country Data
+        const res = await fetch(`https://restcountries.com/v2/name/${dataGeo.country}`);
+        if (!resGeo.ok)
+            throw new Error('Problem Getting Country');
 
-//Country Data
-const res = await fetch(`https://restcountries.com/v2/name/${dataGeo.country}`);
-if(!resGeo.ok)
-throw new Error('Problem Getting Country');
+        const data = await res.json();
+        console.log(data);
+        renderCountry(data[0]);
+    }
+    catch (err) {
+        console.log(`${err}`);
 
-const data = await res.json();
-console.log(data);
-renderCountry(data[0]);
-}
-catch(err){
-    console.log(`${err}`);
-
-}
-}
-
+    }
+};
+console.log('1.Will Get location');
 whereAmI();
+console.log('2.Finished Getting Location');
